@@ -28,8 +28,8 @@ let NUMBER_OF_LED_MATRICES = 4
 
 function setup() {
     max7219_matrix.setup(NUMBER_OF_LED_MATRICES, MATRIX_LOAD_PIN, MATRIX_INPUT_PIN, MATRIX_UNUSED_PIN, MATRIX_CLOCK_PIN);
-    max7219_matrix.for_4_in_1_modules(rotation_direction.none, true);
-    max7219_matrix.displayText("Hello World!", 0, true);
+    max7219_matrix.for_4_in_1_modules(rotation_direction.counterclockwise, true);
+    max7219_matrix.scrollText("Hello World", 50, 50);
 }
 
 
