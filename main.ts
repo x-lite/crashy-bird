@@ -13,6 +13,9 @@ let gameSpeed = 1
 bird = game.createSprite(0, 2)
 bird.set(LedSpriteProperty.Blink, 300)
 
+
+let logger = new Logger(true, true, true);
+
 let MATRIX_LOAD_PIN: DigitalPin = DigitalPin.P16;
 let MATRIX_INPUT_PIN: DigitalPin = DigitalPin.P15;
 let MATRIX_UNUSED_PIN: DigitalPin = DigitalPin.P14;
@@ -25,13 +28,17 @@ let JOYSTICK_Y_PIN: AnalogPin = AnalogPin.P2;
 //https://kitronik.co.uk/products/4691-thumb-joystick?pr_prod_strat=copurchase&pr_rec_pid=4492245041215&pr_ref_pid=4492245172287&pr_seq=uniform
 
 let NUMBER_OF_LED_MATRICES = 4
+let joystick = new Joystick(JOYSTICK_X_PIN, JOYSTICK_Y_PIN, logger);
 
 function setup() {
     max7219_matrix.setup(NUMBER_OF_LED_MATRICES, MATRIX_LOAD_PIN, MATRIX_INPUT_PIN, MATRIX_UNUSED_PIN, MATRIX_CLOCK_PIN);
     max7219_matrix.for_4_in_1_modules(rotation_direction.counterclockwise, true);
-    max7219_matrix.scrollText("Hello World", 50, 50);
+    max7219_matrix.scrollText("Hello World", 10, 50);
 }
 
+function applyJoystick() {
+    max7219_matrix.displayText("X[" + joystick.getX() + "] Y[" + joystick.getY() + "]", 0, true);
+}
 
 function removeOldSprites() {
     while (obstacles.length > 0 && obstacles[0].get(LedSpriteProperty.X) == 0) {
@@ -78,4 +85,4 @@ function gameLoop() {
 //Run the game loop forever(ish)
 
 setup();
-basic.forever(gameLoop);
+basic.forever(applyJoystick);

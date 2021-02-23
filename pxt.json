@@ -3,18 +3,16 @@
     "description": "",
     "dependencies": {
         "core": "*",
-        "radio": "*",
-        "microphone": "*",
-        "pxt-max7219_8x8": "github:alankrantas/pxt-max7219_8x8#v0.0.3"
+        "pxt-max7219_8x8": "github:alankrantas/pxt-max7219_8x8#v0.0.3",
+        "microphone": "*"
     },
     "files": [
         "main.ts",
         "README.md",
-        "main.blocks"
+        "joystick.ts",
+        "logger.ts"
     ],
-    "testFiles": [
-        "test.ts"
-    ],
+    "testFiles": [],
     "supportedTargets": [
         "microbit"
     ],
